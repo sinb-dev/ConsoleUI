@@ -7,6 +7,10 @@ public class RowContainer : ContainerBase
     }
     public override void Render()
     {
+        Render(0,0);
+    }
+    public override void Render(int maxWidth, int maxHeight)
+    {
         ConsoleColor background = Console.BackgroundColor;
         ConsoleColor foreground = Console.ForegroundColor;
         int offsetX = Console.CursorLeft;

@@ -7,7 +7,6 @@ public class Label: UIElement
     public string Content = "";
     public Label()
     {
-
     }
     public Label(string content)
     {
@@ -15,6 +14,10 @@ public class Label: UIElement
     }
 
     public override void Render()
+    {
+        Render(0,0);
+    }
+    public override void Render(int maxWidth, int maxHeight)
     {
         int offsetX = Console.CursorLeft;
         string[] lines = Content.Split("\n");

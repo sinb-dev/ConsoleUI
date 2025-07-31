@@ -13,6 +13,10 @@ public class TextBox : ControlBase
     }
     public override void Render()
     {
+        Render(0,0);
+    }
+    public override void Render(int maxWidth, int maxHeight)
+    {
         Console.BackgroundColor = IsActive() ? ConsoleColor.DarkYellow : ConsoleColor.DarkGray;
         Console.ForegroundColor = ConsoleColor.White;
         string content = Content;
