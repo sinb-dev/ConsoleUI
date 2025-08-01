@@ -13,6 +13,11 @@ public class Label: UIElement
         Content = content;
     }
 
+    public Label(string content, int width)
+    {
+        Content = content;
+        Width = width;
+    }
     public override void Render()
     {
         Render(0,0);
@@ -23,7 +28,16 @@ public class Label: UIElement
         string[] lines = Content.Split("\n");
         foreach (string line in lines)
         {
-            Console.Write(line);
+            string text = line;
+            if (maxWidth > 0 && text.Length > maxWidth) 
+            {
+                text = text.Substring(0, maxWidth - 3) + "...";
+            }
+            else if (text.Length < Width)
+            {
+                text = text.PadRight(Width);
+            }
+            Console.Write(text);
             Console.CursorLeft = offsetX;
             Console.CursorTop++;
         }
@@ -32,12 +46,15 @@ public class Label: UIElement
     {
         string[] lines = Content.Split("\n");
         int height = lines.Length;
-        int width = 0;
-        foreach (string line in lines) 
+        int width = Width;
+        if (width == 0)
         {
-            if (line.Length > width)
+            foreach (string line in lines) 
             {
-                width = line.Length;
+                if (line.Length > width)
+                {
+                    width = line.Length;
+                }
             }
         }
         return (width, height);

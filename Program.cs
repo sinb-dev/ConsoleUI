@@ -4,11 +4,11 @@ Console.CursorLeft = 1;
 Console.CursorTop = 1;
 
 ColumnContainer idColumn = new();
-idColumn.AddChild(new Label("ID"));
-idColumn.AddChild(new Label("1"));
-idColumn.AddChild(new Label("2"));
-idColumn.AddChild(new Label("3"));
-idColumn.AddChild(new Label("4"));
+idColumn.AddChild(new Label("id", 50));
+idColumn.AddChild(new Label("1", 50));
+idColumn.AddChild(new Label("2", 50));
+idColumn.AddChild(new Label("3", 50));
+idColumn.AddChild(new Label("4", 50));
 idColumn.AddChild(new TextBox("First name"));
 ColumnContainer namesColumn = new();
 namesColumn.AddChild(new Label("Name"));
@@ -18,6 +18,9 @@ namesColumn.AddChild(new Label("Remo Lademann"));
 namesColumn.AddChild(new Label("Ella Stick"));
 namesColumn.AddChild(new TextBox("Last name"));
 namesColumn.AddChild(new Button("Save"));
+
+
+
 
 RowContainer list = new();
 
