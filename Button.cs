@@ -2,15 +2,18 @@ namespace ConsoleUI;
 public class Button : ControlBase
 {
     public string Content = "";
+    Action? _onClicked;
     int defaultWidth = 20;
     public Button()
     {
 
     }
-    public Button(string content)
+    public Button(string content, Action? onClicked = null)
     {
         Content = content;
+        _onClicked = onClicked;
     }
+    
     public override void Render()
     {
         Render(defaultWidth,0);
@@ -51,6 +54,14 @@ public class Button : ControlBase
 
     public override void HandleKeyInfo(ConsoleKeyInfo keyInfo)
     {
-        //This gotta wait until we've learned more about functions!
+        switch (keyInfo.Key) 
+        {
+            case ConsoleKey.Enter:
+                if (_onClicked != null)
+                {
+                    _onClicked?.Invoke();
+                }
+                break;
+        }
     }
 } //Button.cs

@@ -2,30 +2,36 @@
 
 Console.CursorLeft = 1;
 Console.CursorTop = 1;
-
+//Create some columns
 ColumnContainer idColumn = new();
-idColumn.AddChild(new Label("id", 50));
-idColumn.AddChild(new Label("1", 50));
-idColumn.AddChild(new Label("2", 50));
-idColumn.AddChild(new Label("3", 50));
-idColumn.AddChild(new Label("4", 50));
-idColumn.AddChild(new TextBox("First name"));
 ColumnContainer namesColumn = new();
+ColumnContainer actionColumn = new();
+//Create some controls
+TextBox txtId = new TextBox();
+TextBox txtName = new TextBox();
+Button btnSave = new Button("Save", AddPerson);
+//Event handler as named function
+void AddPerson()
+{
+    idColumn.AddChild(new Label(txtId.Content)); //Add label with textbox content
+    namesColumn.AddChild(new Label(txtName.Content)); //Add name with textbox content
+    txtId.Content = ""; // Clear textbox
+    txtName.Content = ""; // Clear textbox
+}
+//Add some headers
+idColumn.AddChild(new Label("id", 50));
 namesColumn.AddChild(new Label("Name"));
-namesColumn.AddChild(new Label("Konrad Sommer"));
-namesColumn.AddChild(new Label("Anne Dam"));
-namesColumn.AddChild(new Label("Remo Lademann"));
-namesColumn.AddChild(new Label("Ella Stick"));
-namesColumn.AddChild(new TextBox("Last name"));
-namesColumn.AddChild(new Button("Save"));
+actionColumn.AddChild(new Label("Actions"));
 
-
-
+//Add the controls
+idColumn.AddChild(txtId);
+namesColumn.AddChild(txtName);
+actionColumn.AddChild(btnSave);
 
 RowContainer list = new();
-
 list.AddChild(idColumn);
 list.AddChild(namesColumn);
+list.AddChild(actionColumn);
 
 ConsoleKeyInfo keyInfo;
 while (true)
