@@ -20,7 +20,7 @@ public class Button : ControlBase
     }
     public override void Render(int maxWidth, int maxHeight)
     {
-        Console.BackgroundColor = ConsoleColor.DarkBlue;
+        Console.BackgroundColor = IsActive() ? ConsoleColor.Cyan : ConsoleColor.DarkBlue;
         Console.ForegroundColor = ConsoleColor.White;
         string content = Content;
         if (content.Length > maxWidth) 
