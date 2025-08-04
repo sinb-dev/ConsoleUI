@@ -21,10 +21,10 @@ public abstract class PageBase : UIElement
 
     public override void Render(int maxWidth, int maxHeight)
     {
-        GetRoot().Render(maxWidth, maxHeight);
+        GetMain().Render(maxWidth, maxHeight);
     }
 
-    protected abstract UIElement GetRoot();
+    protected abstract UIElement GetMain();
     public override string ToString()
     {
         return _title;

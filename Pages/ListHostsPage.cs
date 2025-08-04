@@ -6,7 +6,7 @@ public class ListHostsPage : PageBase
     {
 
     }
-    protected override UIElement GetRoot()
+    protected override UIElement GetMain()
     {
         ColumnContainer root = new();
         root.AddChild(new Label("Here comes a list of host IPs"));
