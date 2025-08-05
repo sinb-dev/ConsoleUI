@@ -3,6 +3,7 @@ public abstract class UIElement
 {
     protected int Width = 0;
     protected int Height = 0;
+    protected IContentRoot Root;
     public UIElement()
     {
 

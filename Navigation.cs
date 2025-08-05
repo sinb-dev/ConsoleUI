@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace ConsoleUI;
 public static class Navigation 
 {
@@ -16,12 +18,16 @@ public static class Navigation
         Console.Clear();
         Console.CursorLeft = 0;
         Console.CursorTop = 0;
-        ControlBase.AllControls.Clear();
+        
         //Write the breadcrumbs on page top
         Console.WriteLine(BreadCrumbs());
+
         //Render the active page
-        PageBase activePage = _navigation.Peek();
-        activePage.Render();
+        ActivePage().Render();
+    }
+    public static PageBase ActivePage() 
+    {
+        return _navigation.Peek();
     }
     public static string BreadCrumbs() 
     {

@@ -4,6 +4,17 @@ namespace ConsoleUI;
 public abstract class PageBase : UIElement
 {
     protected string _title = "";
+    ControlsManager? _controlsManager;
+    public ControlsManager? ControlsManager {
+        get {
+            if (ControlsManager == null && GetMain() is ContainerBase container) 
+            {
+                _controlsManager = new();
+                _controlsManager.AddControls(container.GetControls());
+            }
+            return _controlsManager;
+        }
+    }
     public PageBase(string title)
     {
         _title = title;
@@ -23,6 +34,7 @@ public abstract class PageBase : UIElement
     {
         GetMain().Render(maxWidth, maxHeight);
     }
+    
 
     protected abstract UIElement GetMain();
     public override string ToString()

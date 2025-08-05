@@ -10,6 +10,11 @@ while (true)
     //Show active page
     Navigation.Show();
 
+    Overlay.Show();
+
+    ControlsManager? controlsManager;
+    PageBase activePage = Navigation.ActivePage();
+    controlsManager = activePage.ControlsManager;
     keyInfo = Console.ReadKey();
 
     switch(keyInfo.Key)
@@ -18,12 +23,12 @@ while (true)
             break;
         case ConsoleKey.Tab:
             if (keyInfo.Modifiers == ConsoleModifiers.Shift)
-                ControlBase.PreviousControl();
+                controlsManager?.PreviousControl();
             else
-                ControlBase.NextControl();
+                controlsManager?.NextControl();
             break;
         default:
-            ControlBase? activeControl = ControlBase.GetActiveControl();
+            ControlBase? activeControl = controlsManager?.GetActiveControl();
             activeControl?.HandleKeyInfo(keyInfo);
             break;
     }
