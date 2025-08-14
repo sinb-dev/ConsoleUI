@@ -15,7 +15,26 @@ public abstract class UIElement
     
     public abstract void Render();
     public abstract void Render(int maxWidth, int maxHeight);
-    
-    public abstract (int Width, int Height) GetSize();
 
+    public abstract (int Width, int Height) GetSize();
+    protected UIElement? _parent;
+
+    public UIElement? GetParent()
+    {
+        return _parent;
+    }
+    public void SetParent(UIElement element)
+    {
+        _parent = element;
+    }
+    public UIElement GetRoot()
+    {
+        UIElement? parent = GetParent();
+        if (parent == null)
+        {
+            return this;
+        }
+        return parent.GetRoot();
+    }
+    
 } //UIElement.cs

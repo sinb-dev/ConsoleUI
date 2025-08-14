@@ -11,15 +11,10 @@ public abstract class ContainerBase : UIElement
     }
     public void AddChild(UIElement element)
     {
-        if (element is ControlBase)
-        {
-            ControlBase.AllControls.Add((ControlBase) element);
-            
-        }
         _children.Add(element);
 
-        element.SetParent(element);
-    }
+        element.SetParent(this); //Added: Set container as parent to child
+    } //ContainerBase.cs
 
     /// <summary>
     /// Find elements among children that match against a callback

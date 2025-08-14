@@ -9,7 +9,7 @@ while (true)
 {
     //Show active page
     Navigation.Show();
-
+    PageBase activePage = Navigation.ActivePage();
     keyInfo = Console.ReadKey();
 
     switch(keyInfo.Key)
@@ -17,13 +17,14 @@ while (true)
         case ConsoleKey.Escape:
             break;
         case ConsoleKey.Tab:
+            
             if (keyInfo.Modifiers == ConsoleModifiers.Shift)
-                ControlBase.PreviousControl();
+                activePage.PreviousControl();
             else
-                ControlBase.NextControl();
+                activePage.NextControl();
             break;
         default:
-            ControlBase? activeControl = ControlBase.GetActiveControl();
+            ControlBase? activeControl = activePage.GetActiveControl();
             activeControl?.HandleKeyInfo(keyInfo);
             break;
     }
