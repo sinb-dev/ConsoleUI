@@ -1,5 +1,3 @@
-using System.Security.AccessControl;
-
 namespace ConsoleUI;
 
 public class Label: UIElement
@@ -59,4 +57,12 @@ public class Label: UIElement
         }
         return (width, height);
     }    
+
+    public override void LoadFromDB(int id)
+    {
+        base.LoadFromDB(id);
+        object[] values = _databaseHelper.getDBRow(id, "SELECT label_id, content FROM labels WHERE label_id=@id");
+        Id = (int) values[0];
+        Content = (string) values[1];
+    }
 } //Label.cs

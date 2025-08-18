@@ -1,10 +1,9 @@
-using System.Diagnostics.Contracts;
-
 namespace ConsoleUI;
 public abstract class PageBase : UIElement, IControlManager
 {
     protected string _title = "";
     protected ControlHelper _controlHelper = new();
+    protected UIElement? _main = null;
     public PageBase(string title)
     {
         _title = title;
@@ -26,14 +25,17 @@ public abstract class PageBase : UIElement, IControlManager
         _controlHelper.ClearControls();
 
          //Build UI Tree
-        UIElement main = GetMain();
+        if (_main == null)
+        {
+            _main = GetMain();
+        }
 
         //Set main node parent to page
-        main.SetParent(this);
+        _main.SetParent(this);
         
-        findAndAddControls(main);
+        findAndAddControls(_main);
         
-        main.Render(maxWidth, maxHeight);
+        _main.Render(maxWidth, maxHeight);
     } //PageBase.cs
     public void NextControl()
     {
@@ -69,4 +71,5 @@ public abstract class PageBase : UIElement, IControlManager
     {
         return _title;
     }
+    
 } //PageBase.cs

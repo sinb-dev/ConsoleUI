@@ -1,8 +1,11 @@
 ﻿using ConsoleUI;
 using ConsoleUI.Pages;
 
-//Open ListHostsPage as the first page
-Navigation.Open(new ListHostsPage());
+DBPage page = new();
+page.LoadFromDB(4);
+
+//Open page from database
+Navigation.Open(page);
 
 ConsoleKeyInfo keyInfo;
 while (true)

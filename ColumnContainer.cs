@@ -44,4 +44,10 @@ public class ColumnContainer : ContainerBase
         }
         return (width, height);
     }
+    public override void LoadFromDB(int id)
+    {
+        base.LoadFromDB(id);
+        object[] values = _databaseHelper.getDBRow(id, "SELECT columncontainer_id FROM columncontainer WHERE columncontainer_id=@id");
+        Id = (int) values[0];
+    }
 } //ColumnContainer.cs

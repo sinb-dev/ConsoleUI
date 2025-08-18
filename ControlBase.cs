@@ -16,4 +16,10 @@ public abstract class ControlBase : UIElement
     // Require child classes to handle KeyInfo from console
     public abstract void HandleKeyInfo(ConsoleKeyInfo keyInfo);
 
+    public override void LoadFromDB(int id)
+    {
+        base.LoadFromDB(id);
+        object[] values = _databaseHelper.getDBRow(id, "SELECT control_id FROM controlbase WHERE control_id=@id");
+        Id = (int) values[0];
+    }
 } //ControlBase.cs

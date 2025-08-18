@@ -57,4 +57,14 @@ public class TextBox : ControlBase
                 break;
         }
     }
+    public override void LoadFromDB(int id)
+    {
+        base.LoadFromDB(id);
+        object[] values = _databaseHelper.getDBRow(id, "SELECT textbox_id, content FROM textbox WHERE textbox_id=@id");
+        if (values.Length > 0)
+        {
+            Id = (int) values[0];
+            Content = (string) values[1];
+        }
+    }
 } //TextBox.cs
