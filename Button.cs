@@ -27,12 +27,12 @@ public class Button : ControlBase
         {
             content = content.Substring(0, maxWidth-3) + "...";
         }
-        else if (content.Length < maxWidth)
+        else if (content.Length < defaultWidth)
         {
             //Align the button text in the middle of the button
-            int spaceLeft = maxWidth - content.Length;
+            int spaceLeft = defaultWidth - content.Length;
             int padLeft = (int) Math.Round(spaceLeft*0.5) + content.Length;
-            content = content.PadLeft(padLeft).PadRight(maxWidth);
+            content = content.PadLeft(padLeft).PadRight(defaultWidth);
         }
 
         Console.Write(content);
@@ -41,7 +41,7 @@ public class Button : ControlBase
     {
         string[] lines = Content.Split("\n");
         int height = lines.Length;
-        int width = 0;
+        int width = defaultWidth;
         foreach (string line in lines) 
         {
             if (line.Length > width)
